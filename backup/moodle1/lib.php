@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -37,13 +36,13 @@ class moodle1_mod_hatsize_handler extends moodle1_resource_successor_handler {
      */
     public function process_legacy_resource(array $data, array $raw = null) {
 
-        // get the course module id and context id
+        // Get the course module id and context id
         $instanceid = $data['id'];
         $cminfo     = $this->get_cminfo($instanceid, 'resource');
         $moduleid   = $cminfo['id'];
         $contextid  = $this->converter->get_contextid(CONTEXT_MODULE, $moduleid);
 
-        // prepare the new hatsize instance record
+        // Prepare the new hatsize instance record
         $hatsize                 = array();
         $hatsize['id']           = $data['id'];
         $hatsize['name']         = $data['name'];
@@ -53,7 +52,7 @@ class moodle1_mod_hatsize_handler extends moodle1_resource_successor_handler {
         $hatsize['template']     = $data['template'];
         $hatsize['timemodified'] = $data['timemodified'];
 
-        // populate display and displayoptions fields
+        // Populate display and displayoptions fields
         $options = array('printintro' => 1);
         if ($data['options'] == 'frame') {
             $hatsize['display'] = RESOURCELIB_DISPLAY_FRAME;
@@ -77,7 +76,7 @@ class moodle1_mod_hatsize_handler extends moodle1_resource_successor_handler {
         }
         $hatsize['displayoptions'] = serialize($options);
 
-        // populate the parameters field
+        // Populate the parameters field
         $parameters = array();
         if ($data['alltext']) {
             $rawoptions = explode(',', $data['alltext']);
@@ -88,11 +87,11 @@ class moodle1_mod_hatsize_handler extends moodle1_resource_successor_handler {
         }
         $hatsize['parameters'] = serialize($parameters);
 
-        // convert course files embedded into the intro
+        // Convert course files embedded into the intro
         $this->fileman = $this->converter->get_file_manager($contextid, 'mod_hatsize', 'intro');
         $hatsize['intro'] = moodle1_converter::migrate_referenced_files($hatsize['intro'], $this->fileman);
 
-        // write hatsize.xml
+        // Write hatsize.xml
         $this->open_xml_writer("activities/hatsize_{$moduleid}/hatsize.xml");
         $this->xmlwriter->begin_tag('activity', array('id' => $instanceid, 'moduleid' => $moduleid,
             'modulename' => 'hatsize', 'contextid' => $contextid));
@@ -100,7 +99,7 @@ class moodle1_mod_hatsize_handler extends moodle1_resource_successor_handler {
         $this->xmlwriter->end_tag('activity');
         $this->close_xml_writer();
 
-        // write inforef.xml
+        // Write inforef.xml
         $this->open_xml_writer("activities/hatsize_{$moduleid}/inforef.xml");
         $this->xmlwriter->begin_tag('inforef');
         $this->xmlwriter->begin_tag('fileref');
