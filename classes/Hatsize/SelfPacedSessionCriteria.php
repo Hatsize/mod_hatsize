@@ -1,50 +1,44 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * @package     mod_hatsize
+ * @copyright   2016 Hatsize Learning {@link http://hatsize.com}
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 namespace Hatsize;
 
 class SelfPacedSessionCriteria {
-	/**
-	 *
-	 * @var boolean
-	 */
-	public $includeUpcoming = false;
-	/**
-	 *
-	 * @var boolean
-	 */
-	public $includeInProgress = false;
-	/**
-	 *
-	 * @var boolean
-	 */
-	public $includeCompleted = false;
-	/**
-	 *
-	 * @var boolean
-	 */
-	public $includeCanceled = false;
-	/**
-	 *
-	 * @var int
-	 */
-	public $organizationId = '';
-	/**
-	 *
-	 * @var int
-	 */
-	public $userId = '';
-	/**
-	 *
-	 * @var int
-	 */
-	public $templateId = '';
-	/**
-	 *
-	 * @var string
-	 */
-	public $startTime = '';
-	/**
-	 *
-	 * @var string
-	 */
-	public $endTime = '';
+
+  public $includeUpcoming = false;
+
+  public $includeInProgress = false;
+
+  public $includeCompleted = false;
+
+  public $includeCanceled = false;
+
+  public $organizationId = '';
+
+  public $userId = '';
+
+  public $templateId = '';
+
+  public $startTime = '';
+
+  public $endTime = '';
 }
