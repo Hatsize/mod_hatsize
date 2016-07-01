@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -81,79 +80,79 @@ function hatsize_fix_submitted_url($hatsize) {
  * @return string url with & encoded as &amp;
  */
 function hatsize_get_full_url($hatsize, $cm, $course, $config=null) {
-	global $USER;
-	$md_username = $USER->username;
-	$md_email = $USER->email;
-	$md_firstname = $USER->firstname;
-	$md_lastname = $USER->lastname;
-	$parameters = empty($hatsize->parameters) ? array() : unserialize($hatsize->parameters);
-	$groupid = $hatsize->hsgroup;
-	$templateId = $hatsize->template;
-	$duration = $hatsize->duration;
+  global $USER;
+  $md_username = $USER->username;
+  $md_email = $USER->email;
+  $md_firstname = $USER->firstname;
+  $md_lastname = $USER->lastname;
+  $parameters = empty($hatsize->parameters) ? array() : unserialize($hatsize->parameters);
+  $groupid = $hatsize->hsgroup;
+  $templateId = $hatsize->template;
+  $duration = $hatsize->duration;
 
 
-	// Start Hatszie API Call ***********************************
-	$config = get_config('hatsize');
-	$wsdlUrl = $config->webservices;
-	$certkey = $config->apikey;
-	$certPath = "apikey.pem";
+  // Start Hatszie API Call ***********************************
+  $config = get_config('hatsize');
+  $wsdlUrl = $config->webservices;
+  $certkey = $config->apikey;
+  $certPath = "apikey.pem";
 
-	if(!$wsdlUrl or !$certkey) {throw new \Exception("Missing security settings in plugin.");	}
+  if(!$wsdlUrl or !$certkey) {throw new \Exception("Missing security settings in plugin.");  }
 
-	$certfile = fopen($certPath, "w") or die("Unable to open file!");
-	fwrite($certfile, $certkey);
-	fclose($certfile);
-	$hatsize = new \Hatsize\Api($wsdlUrl, $certPath);
-
-
-	// User Check/Create ***********************************
-	$user = $hatsize->getUserByUsername($md_username);
-	if(!$user) {
-		$user = new \Hatsize\User();
-		$user->username = $md_username;
-		$user->email = $md_email;
-		$user->firstName = $md_firstname;
-		$user->lastName = $md_lastname;
-		$user->password = mt_rand(1000000000,9999999999);;
-		$userId = $hatsize->createUser($user);
-		if(!$userId) {throw new \Exception("Unable to create user - Name:" . $md_username); }
-	} else {
-		$userId = $user->id;
-	}
+  $certfile = fopen($certPath, "w") or die("Unable to open file!");
+  fwrite($certfile, $certkey);
+  fclose($certfile);
+  $hatsize = new \Hatsize\Api($wsdlUrl, $certPath);
 
 
-	// Group Assginment ***********************************
-	if(!$groupid) {throw new \Exception("Unable to retrieve group");	}
-	if(!$hatsize->addUserToGroup($userId, $groupid)) {throw new \Exception("Unable to add user to group - User:" . $userId . " Group:" . $groupid);}
+  // User Check/Create ***********************************
+  $user = $hatsize->getUserByUsername($md_username);
+  if(!$user) {
+    $user = new \Hatsize\User();
+    $user->username = $md_username;
+    $user->email = $md_email;
+    $user->firstName = $md_firstname;
+    $user->lastName = $md_lastname;
+    $user->password = mt_rand(1000000000,9999999999);;
+    $userId = $hatsize->createUser($user);
+    if(!$userId) {throw new \Exception("Unable to create user - Name:" . $md_username); }
+  } else {
+    $userId = $user->id;
+  }
 
 
-	//	Get SelfPaced Sessions ***********************************
-	$criteria = new \Hatsize\SelfPacedSessionCriteria();
-	$criteria->includeInProgress = true;
-	$criteria->includeUpcoming = true;
-	$criteria->userId = $userId;
-	$criteria->templateId = $templateId;
-	$sessions = $hatsize->getSelfPacedSessions($criteria);
+  // Group Assginment ***********************************
+  if(!$groupid) {throw new \Exception("Unable to retrieve group");  }
+  if(!$hatsize->addUserToGroup($userId, $groupid)) {throw new \Exception("Unable to add user to group - User:" . $userId . " Group:" . $groupid);}
 
-	if(!$sessions) {
-		$sessionId = $hatsize->createSelfPacedSessionForUser($userId, $templateId, new \DateTime("+0 hours"), new \DateTime("+".$duration." minutes"), $firstTemplate->locations[0]);
-		if(!$sessionId) {
-			throw new \Exception("Unable to create lab session for template " . $templateId . "<br>Message: " . $hatsize->getLastErrorMessage() );
-		}
-		$sessions = $hatsize->getSelfPacedSessions($criteria);
-		if(!$sessions) {throw new \Exception("No valid lab session found.");}
-	}
 
-	$labUrls = $sessions[0]->urls;
-	if(!$labUrls) {throw new \Exception("No valid lab sessions available.");	}
+  //  Get SelfPaced Sessions ***********************************
+  $criteria = new \Hatsize\SelfPacedSessionCriteria();
+  $criteria->includeInProgress = true;
+  $criteria->includeUpcoming = true;
+  $criteria->userId = $userId;
+  $criteria->templateId = $templateId;
+  $sessions = $hatsize->getSelfPacedSessions($criteria);
 
-	if (count($labUrls) == '2') {
-		$fullurl = $labUrls[1]->url;
-	} else {
-		$fullurl = $labUrls[0]->url;
-	}
+  if(!$sessions) {
+    $sessionId = $hatsize->createSelfPacedSessionForUser($userId, $templateId, new \DateTime("+0 hours"), new \DateTime("+".$duration." minutes"), $firstTemplate->locations[0]);
+    if(!$sessionId) {
+      throw new \Exception("Unable to create lab session for template " . $templateId . "<br>Message: " . $hatsize->getLastErrorMessage() );
+    }
+    $sessions = $hatsize->getSelfPacedSessions($criteria);
+    if(!$sessions) {throw new \Exception("No valid lab session found.");}
+  }
 
-	// End Hatsize API Code ***********************************
+  $labUrls = $sessions[0]->urls;
+  if(!$labUrls) {throw new \Exception("No valid lab sessions available.");  }
+
+  if (count($labUrls) == '2') {
+    $fullurl = $labUrls[1]->url;
+  } else {
+    $fullurl = $labUrls[0]->url;
+  }
+
+  // End Hatsize API Code ***********************************
 
 
 
