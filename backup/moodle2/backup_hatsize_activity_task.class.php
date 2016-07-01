@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -52,19 +51,19 @@ class backup_hatsize_activity_task extends backup_activity_task {
     static public function encode_content_links($content) {
         global $CFG;
 
-        $base = preg_quote($CFG->wwwroot.'/mod/hatsize','#');
+        $base = preg_quote($CFG->wwwroot.'/mod/hatsize', '#');
 
-        //Access a list of all links in a course
+        // Access a list of all links in a course
         $pattern = '#('.$base.'/index\.php\?id=)([0-9]+)#';
         $replacement = '$@URLINDEX*$2@$';
         $content = preg_replace($pattern, $replacement, $content);
 
-        //Access the link supplying a course module id
+        // Access the link supplying a course module id
         $pattern = '#('.$base.'/view\.php\?id=)([0-9]+)#';
         $replacement = '$@URLVIEWBYID*$2@$';
         $content = preg_replace($pattern, $replacement, $content);
 
-        //Access the link supplying an instance id
+        // Access the link supplying an instance id
         $pattern = '#('.$base.'/view\.php\?u=)([0-9]+)#';
         $replacement = '$@URLVIEWBYU*$2@$';
         $content = preg_replace($pattern, $replacement, $content);

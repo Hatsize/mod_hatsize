@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -23,14 +22,14 @@
 
 defined('MOODLE_INTERNAL') || die;
 
- /**
- * Define the complete url structure for backup, with file and id annotations
- */
+/**
+* Define the complete url structure for backup, with file and id annotations
+*/
 class backup_hatsize_activity_structure_step extends backup_activity_structure_step {
 
     protected function define_structure() {
 
-        //the URL module stores no user info
+        // The URL module stores no user info
 
         // Define each element separated
         $hatsize = new backup_nested_element('hatsize', array('id'), array(
@@ -39,13 +38,13 @@ class backup_hatsize_activity_structure_step extends backup_activity_structure_s
 
 
         // Build the tree
-        //nothing here for URLs
+        // Nothing here for URLs
 
         // Define sources
         $hatsize->set_source_table('hatsize', array('id' => backup::VAR_ACTIVITYID));
 
         // Define id annotations
-        //module has no id annotations
+        // Module has no id annotations
 
         // Define file annotations
         $hatsize->annotate_files('mod_hatsize', 'intro', null); // This file area hasn't itemid
