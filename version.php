@@ -25,5 +25,6 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->version   = 2016062800;        // The current module version (Date: YYYYMMDDXX)
 $plugin->requires  = 2014110400;        // Requires this Moodle version
 $plugin->component = 'mod_hatsize';     // Full name of the plugin (used for diagnostics)
-$plugin->cron      = 0;
 $plugin->release   = 'v1.0.12';         // Human-readable version name
+$plugin->maturity  = MATURITY_STABLE;
+$plugin->cron      = 0;
