@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of the Hatsize Lab Activity Module for Moodle
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -25,6 +25,6 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->version   = 2016062901;        // The current module version (Date: YYYYMMDDXX)
 $plugin->requires  = 2014051200;        // Requires this Moodle version
 $plugin->component = 'mod_hatsize';     // Full name of the plugin (used for diagnostics)
-$plugin->release   = 'v1.0.13a';         // Human-readable version name
+$plugin->release   = 'v1.1.00';         // Human-readable version name
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->cron      = 0;

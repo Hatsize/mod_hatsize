@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of the Hatsize Lab Activity Module for Moodle
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -42,7 +42,14 @@ class mod_hatsize_mod_form extends moodleform_mod {
         }
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
-        $this->add_intro_editor($config->requiremodintro);
+
+        // Add the instruction/description field.
+        if ($CFG->version >= 2015051100) {
+            // Moodle 2.9.0 and higher use the new API.
+            $this->standard_intro_elements($config->requiremodintro);
+        } else {
+            $this->add_intro_editor($config->requiremodintro);
+        }
 
         //-------------------------------------------------------
         $mform->addElement('header', 'content', get_string('contentheader', 'hatsize'));

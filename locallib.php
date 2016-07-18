@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of the Hatsize Lab Activity Module for Moodle
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ defined('MOODLE_INTERNAL') || die;
 require_once("$CFG->libdir/filelib.php");
 require_once("$CFG->libdir/resourcelib.php");
 require_once("$CFG->dirroot/mod/hatsize/lib.php");
-require_once("$CFG->dirroot/mod/hatsize/classes/autoloader.php");
+require_once("$CFG->dirroot/mod/hatsize/src/autoloader.php");
 
 /**
  * This methods does weak url validation, we are looking for major problems only,

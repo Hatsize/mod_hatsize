@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of the Hatsize Lab Activity Module for Moodle
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configtext('hatsize/framesize',
         get_string('framesize', 'hatsize'), get_string('configframesize', 'hatsize'), 130, PARAM_INT));
     $settings->add(new admin_setting_configcheckbox('hatsize/requiremodintro',
-        get_string('requiremodintro', 'admin'), get_string('configrequiremodintro', 'admin'), 1));
+        get_string('requiremodintro', 'admin'), get_string('configrequiremodintro', 'hatsize'), 1));
     $settings->add(new admin_setting_configcheckbox('hatsize/rolesinparams',
         get_string('rolesinparams', 'hatsize'), get_string('configrolesinparams', 'hatsize'), false));
     $settings->add(new admin_setting_configmultiselect('hatsize/displayoptions',
@@ -49,7 +49,7 @@ if ($ADMIN->fulltree) {
         get_string('configapikeyinfo', 'hatsize'), ''));
 
     //--- modedit defaults -----------------------------------------------------------------------------------
-    $settings->add(new admin_setting_heading('urlmodeditdefaults', get_string('modeditdefaults', 'admin'), get_string('condifmodeditdefaults', 'admin')));
+    $settings->add(new admin_setting_heading('urlmodeditdefaults', get_string('modeditdefaults', 'hatsize'), get_string('condifmodeditdefaults', 'admin')));
 
     $settings->add(new admin_setting_configcheckbox('hatsize/printintro',
         get_string('printintro', 'hatsize'), get_string('printintroexplain', 'hatsize'), false));
