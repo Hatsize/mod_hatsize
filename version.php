@@ -22,9 +22,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2016062900;        // The current module version (Date: YYYYMMDDXX)
-$plugin->requires  = 2014110400;        // Requires this Moodle version
+$plugin->version   = 2016062901;        // The current module version (Date: YYYYMMDDXX)
+$plugin->requires  = 2014051200;        // Requires this Moodle version
 $plugin->component = 'mod_hatsize';     // Full name of the plugin (used for diagnostics)
-$plugin->release   = 'v1.0.13';         // Human-readable version name
+$plugin->release   = 'v1.0.13a';         // Human-readable version name
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->cron      = 0;
