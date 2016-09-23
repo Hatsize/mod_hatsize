@@ -23,6 +23,7 @@
 $string['clicktoopen'] = 'Click {$a} link to open resource.';
 $string['configdisplayoptions'] = 'Select all options that should be available, existing settings are not modified. Hold CTRL key to select multiple fields.';
 $string['configframesize'] = 'When a web page or an uploaded file is displayed within a frame, this value is the height (in pixels) of the top frame (which contains the navigation).';
+$string['configrequiremodintro'] = 'This setting allows you to turn off the requirement for users to type something into the description box.';
 $string['configrolesinparams'] = 'Enable if you want to include localized role names in list of available parameter variables.';
 $string['configwebservices'] = 'Web Services URL';
 $string['configwebservicesinfo'] = 'Enter the Web Services URL provided by Hatsize, such as: http://somesite.com';
@@ -45,6 +46,7 @@ $string['framesize'] = 'Frame height';
 $string['invalidstoredurl'] = 'Cannot display this resource, URL is invalid.';
 $string['chooseavariable'] = 'Choose a variable...';
 $string['invalidurl'] = 'Entered URL is invalid';
+$string['modeditdefaults'] = 'Default settings';
 $string['modulename'] = 'Hatsize Lab';
 $string['modulename_help'] = 'The Hatsize Lab module enables a teacher to provide a link to a Hatsize Lab environment as a course resource.
 
