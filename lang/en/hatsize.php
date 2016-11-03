@@ -41,6 +41,7 @@ $string['displayselect_help'] = 'This setting, together with the URL file type a
 * In pop-up - The URL is displayed in a new browser window without menus or an address bar
 * In frame - The URL is displayed within a frame below the navigation bar and URL description
 * New window - The URL is displayed in a new browser window with menus and an address bar';
+$string['modeditdefaults'] = 'Display Defaults';
 $string['displayselectexplain'] = 'Choose display type, unfortunately not all types are suitable for all URLs.';
 $string['framesize'] = 'Frame height';
 $string['invalidstoredurl'] = 'Cannot display this resource, URL is invalid.';
